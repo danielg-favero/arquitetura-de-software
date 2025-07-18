@@ -24,6 +24,7 @@ type ProductInterface interface {
 	GetName() string
 	GetStatus() string
 	GetPrice() float64
+	ChangePrice(price float64) error
 }
 
 // Definição do serviço de Produto
@@ -125,4 +126,16 @@ func (product *Product) GetStatus() string {
 
 func (product *Product) GetPrice() float64 {
 	return product.Price	
+}
+
+func (product *Product) ChangePrice(price float64) error {
+	if product.Price < 0 {
+		return errors.New("Preço precisa ser maior que 0")
+	}
+	product.Price = price
+	_, err := product.IsValid()
+	if err != nil {
+		return err
+	}
+	return nil
 }

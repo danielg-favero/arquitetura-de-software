@@ -7,7 +7,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func main() {
+func mainDb() {
 	// Testando o adapter do Banco de Dados no service de produtos
 	db, _ := sql.Open("sqlite3", "db.sqlite")
 
